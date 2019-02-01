@@ -125,7 +125,12 @@
         host_all: True
         password: '{{ mysql_root_password }}'
         check_implicit_admin: True
-        priv: '*.*:ALL,GRANT'
+        priv: "{{ (mysql_version < 8) | ternary('*.*:ALL,GRANT','*.*:ALTER,ALTER \
+              ROUTINE,CREATE,CREATE ROLE,CREATE ROUTINE,CREATE \
+              TABLESPACE,CREATE TEMPORARY TABLES,CREATE USER,CREATE VIEW,DELETE,DROP,DROP \
+              ROLE,EVENT,EXECUTE,FILE,GRANT,INDEX,INSERT,LOCK \
+              TABLES,PROCESS,REFERENCES,RELOAD,REPLICATION CLIENT,REPLICATION \
+              SLAVE,SELECT,SHOW DATABASES,SHOW VIEW,SHUTDOWN,SUPER,TRIGGER,UPDATE') }}"
         login_user: '{{ mysql_root_username }}'
         login_password: '{{ mysql_root_password }}'
       no_log: False
