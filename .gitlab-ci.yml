@@ -20,7 +20,7 @@ Ansible lint:
   tags:
     - aws
 
-.Docker mysql:
+Docker mysql:
   stage: deployment test
   script:
     - molecule test -s default
@@ -55,7 +55,7 @@ Ansible lint:
   tags:
     - aws
 
-AWS mysql mariadb:
+.AWS mysql mariadb:
   variables:
     AWS_REGION: us-east-1
   stage: deployment test
